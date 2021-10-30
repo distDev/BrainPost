@@ -1,5 +1,5 @@
 # BrainPost
-Приложение похоже на reddit/vc.ru/main
+Приложение похожее на reddit/vc.ru/main
 
 Стек: 
 
