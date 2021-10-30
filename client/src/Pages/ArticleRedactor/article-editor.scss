@@ -1,0 +1,33 @@
+.editor-container {
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 20px 40px;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    margin: 0px;
+    padding: 0px;
+  }
+  button {
+     width: 30%;
+    padding: 12px 40px;
+    background: #8f79db;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #ffffff;
+    border: none;
+    display: inline-block;
+  }
+  .ce-paragraph::before {
+    font-size: 26px;
+    color: #d1d1d1;
+    opacity: 0.9;
+    font-weight: bold;
+    box-sizing: border-box;
+  }
+}

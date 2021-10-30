@@ -1,0 +1,30 @@
+.recomend-cat {
+  width: 281px;
+  position: sticky;
+  top: 40px;
+
+  button {
+    width: 100%;
+    padding: 13px 0px;
+    background: #a28bf2;
+    border-radius: 6px;
+    margin-top: 20px;
+    border: none;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+  }
+  
+}
+.recomed-box {
+  width: 100%;
+  height: 244px;
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+}
+.recomend-cat-stic {
+  position: relative;
+  height: auto;
+}

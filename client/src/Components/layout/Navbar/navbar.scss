@@ -1,0 +1,29 @@
+.nav-stic {
+  position: relative;
+  height: auto;
+}
+
+.navbar {
+  width: 201px;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 40px;
+ 
+
+  a {
+    width: 100%;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    color: #000000;
+    text-decoration: none;
+    padding: 13px 15px;
+    box-sizing: border-box;
+    margin-bottom: 4px;
+  }
+  .selected {
+      background: rgb(255, 255, 255);
+      border-radius: 8px;
+  }
+}

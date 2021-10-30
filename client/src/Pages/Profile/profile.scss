@@ -1,0 +1,18 @@
+.profile-info {
+  background: rgb(255, 255, 255);
+  box-sizing: border-box;
+  padding: 20px;
+  margin-bottom: 40px;
+
+  .profile-info-img {
+    width: 88px;
+    height: 88px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+  }
+}
