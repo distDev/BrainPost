@@ -20,7 +20,7 @@ router.post('/', async(req, res) => {
 router.get('/', async (req, res) => {
   
   try {
-    const cats = await Categoty.find();
+    const cats = await Category.find();
     res.status(200).json(cats);
   } catch (error) {
     res.status(500).json(error.message);

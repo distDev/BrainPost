@@ -10,7 +10,7 @@ export const Navbar = (props: Props) => {
     <div className='nav-stic'>
       <div className='navbar'>
         {navbarList.map((nav) => (
-          <NavLink to={nav.link} exact activeClassName='selected'>
+          <NavLink key={nav.id} to={nav.link} exact activeClassName='selected'>
             {nav.title}
           </NavLink>
         ))}

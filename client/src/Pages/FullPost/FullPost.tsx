@@ -1,33 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import './fullpost.scss';
-import { data } from '../../data';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import FullPostContent from '../../Components/fullPostContent/FullPostContent';
+import { IPost } from '../../interfaces';
+import { Loader } from '../../Components/loader/Loader';
 
-interface Props {}
 
-export const FullPost = (props: Props) => {
+
+
+export const FullPost = () => {
+  const [fullPost, setFullPost] = useState<IPost>();
   const { id }: any = useParams();
+
+  useEffect(() => {
+    const fetchFullPost = async () => {
+      const res = await axios.get('/posts/' + id);
+      setFullPost(res.data);
+    };
+    fetchFullPost();
+  }, [id]);
+
+
   return (
-    <div className='fullpost-container'>
-      {data.posts
-        .filter((post) => post.id === id)
-        .map((post) => (
-          <>
-            <div className='post-header-desc'>
-              <Link to={`/single-cat/${post.cat}`} className='cat'>
-                {post.cat}
-              </Link>
-              <Link to='/profile' className='author'>
-                {post.author}
-              </Link>
-              <p>{post.date}</p>
-            </div>
-            <h2>{post.title}</h2>
-            <img src={post?.img} alt='' />
-            <p>{post.text}</p>
-          </>
-        ))}
-    </div>
+    <>
+      {fullPost === undefined ? (
+        <Loader />
+      ) : (
+        <FullPostContent fullPost={fullPost} id={id} />
+      )}
+    </>
   );
 };

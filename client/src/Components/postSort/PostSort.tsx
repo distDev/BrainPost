@@ -10,7 +10,6 @@ interface Props {
 export const PostSort = (props: Props) => {
 
     const loc = useLocation();
-    console.log(loc)
 
     return (
       <div className='post-sort-container'>

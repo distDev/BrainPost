@@ -1,12 +1,27 @@
 export interface IPost {
-  id: string;
-  title: string;
-  author: string;
-  cat: string;
-  img: string;
-  likes: number;
-  date: string;
+    _id: string;
+    username: string;
+    body: {
+        blocks: ({
+            data: {
+                text: string;
+            };
+        } 
+        )[];
+        version: string;
+    }[];
+    categories: string;
+    createdAt: string;
+    
 }
+export interface ICategories {
+  _id: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
+
 export interface IFormType {
   setFormType: React.Dispatch<React.SetStateAction<'register' | 'auth'>>;
 }

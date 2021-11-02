@@ -21,7 +21,7 @@ const PostSchema = new mongoose.Schema(
     },
     body: [mongoose.Schema.Types.Mixed],
     categories: {
-      type: Array,
+      type: String,
       require: false,
     },
   },

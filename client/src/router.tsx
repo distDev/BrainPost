@@ -8,7 +8,9 @@ import { New } from './Pages/New/New';
 import { Profile } from './Pages/Profile/Profile';
 import { SingleCat } from './Pages/SingleCat/SingleCat';
 
-interface Props {}
+interface Props {
+
+}
 
 export const AppRouter = (props: Props) => {
   return (

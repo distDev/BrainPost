@@ -1,35 +1,46 @@
-import React from 'react'
-import { useHistory } from 'react-router';
+import axios from 'axios';
+import React, { FC, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { data } from '../../data';
-import './categories.scss'
+import { ICategories } from '../../interfaces';
 
-interface Props {
-    
-}
-
-export const Categories = (props: Props) => {
+import './categories.scss';
 
 
-    return (
-      <div className='main-container categories'>
-        <h2>Категории</h2>
-        <input
-          type='text'
-          placeholder='Поиск категории...'
-          className='categories-search'
-        />
-        <div className='categories-container'>
-          {data.categories.map((cat) => (
-            <Link to={`/single-cat/${cat.name}`} className='categories-item' key={cat.id}>
-              <div className='categories-img'>
-                <img src={cat?.img} alt={cat.name} />
-              </div>
 
-              <h3>{cat.name}</h3>
-            </Link>
-          ))}
-        </div>
+export const Categories:FC = () => {
+  const [cat, setCat] = useState<ICategories[]>([]);
+
+  useEffect(() => {
+    const fetchCat = async () => {
+      const res = await axios.get('/categories/');
+      setCat(res.data);
+    };
+    fetchCat();
+  }, []);
+
+
+  return (
+    <div className='main-container categories'>
+      <h2>Категории</h2>
+      <input
+        type='text'
+        placeholder='Поиск категории...'
+        className='categories-search'
+      />
+      <div className='categories-container'>
+       {cat === undefined ? 'Загружается' : (
+         cat.map((e) => (
+              <Link
+                to={`/single-cat/${e.name}`}
+                className='categories-item'
+                key={e._id}
+              >
+                <div className='categories-img'></div>
+
+                <h3>{e.name}</h3>
+              </Link>
+       )))}
       </div>
-    );
-}
+    </div>
+  );
+};

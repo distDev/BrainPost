@@ -2,19 +2,19 @@ const router = require('express').Router();
 const User = require('../models/User');
 const Post = require('../models/Post');
 
-//СОЗДАНИЕ НОВОГО ПОСТА
-router.post('/', async (req, res) => {
-  const newPost = await new Post(req.body);
+//CREATE POST
+router.post("/", async (req, res) => {
+  const newPost = new Post(req.body);
   try {
     const savedPost = await newPost.save();
     res.status(200).json(savedPost);
-  } catch (error) {
-    res.status(500).json(error.message);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
-//ИЗМЕНЕНИЕ ПОСТА
-router.put('/:id', async (req, res) => {
+//UPDATE POST
+router.put("/:id", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     if (post.username === req.body.username) {
@@ -27,73 +27,64 @@ router.put('/:id', async (req, res) => {
           { new: true }
         );
         res.status(200).json(updatedPost);
-      } catch (error) {
-        res.status(500).json(error.message);
+      } catch (err) {
+        res.status(500).json(err);
       }
     } else {
-      res.status(404).json('Вы можете изменять только свои посты');
+      res.status(401).json("You can update only your post!");
     }
-  } catch (error) {
-    res.status(500).json(error.message);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
-// ПОЛУЧЕНИЕ ПОСТА
-router.get('/:id', async (req, res) => {
-  try {
-    const post = await Post.findById(req.params.id);
-    res.status(200).json(post);
-  } catch (error) {
-    res.status(500).json(error.message);
-  }
-});
-
-// ПОЛУЧЕНИЕ ВСЕХ ПОСТОВ
-router.get('/', async (req, res) => {
-  // По каким параметрам можно будет осуществлять поиск
-  const username = req.query.user;
-  const catName = req.query.cat;
-
-  try {
-    let posts;
-    // если в params будет имя пользователя, то выведет все его посты
-    if (username) {
-      posts = await Post.find({ username });
-    }
-    // если в params будет имя категории, то выведет посты категории
-    else if (catName) {
-      posts = await Post.find({
-        categories: {
-          $in: [catName],
-        },
-      });
-    }
-    // если в params ничего не будет, то выведет все посты
-    else {
-      posts = await Post.find();
-    }
-    res.status(200).json(posts);
-  } catch (error) {
-    res.status(500).json(error.message);
-  }
-});
-
-// УДАЛЕНИЕ ПОСТА
-router.delete('/:id', async (req, res) => {
+//DELETE POST
+router.delete("/:id", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     if (post.username === req.body.username) {
       try {
         await post.delete();
-        res.status(200).json('Пост был удален');
-      } catch (error) {
-        res.status(500).json(error.message);
+        res.status(200).json("Post has been deleted...");
+      } catch (err) {
+        res.status(500).json(err);
       }
     } else {
-      res.status(404).json('Вы можете изменять только свои посты');
+      res.status(401).json("You can delete only your post!");
     }
-  } catch (error) {
-    res.status(500).json(error.message);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//GET POST
+router.get("/:id", async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    res.status(200).json(post);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//Получение постов
+router.get("/", async (req, res) => {
+  const username = req.query.user;
+  const categories = req.query.сat;
+  try {
+    let posts;
+    // если в query имя пользователя
+    if (username) {
+      posts = await Post.find({ username });
+      // если в query имя пользователя
+    } else if (categories) {
+      posts = await Post.find({ categories });
+    } else {
+      posts = await Post.find();
+    }
+    res.status(200).json(posts);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 

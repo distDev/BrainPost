@@ -3,26 +3,35 @@
   background: rgb(255, 255, 255);
   border-radius: 10px;
   margin-bottom: 20px;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
   position: relative;
   background-size: contain;
   overflow: hidden;
- 
-  .post-title {
-    
-    font-size: 36px;
-    font-weight: bold;
-    color: #000000;
-    
-    &:hover {
-      color: #8f79db;
+  
+  .post-content-mini {
+    .post-title {
+      text-decoration: none;
+      font-size: 26px;
+      font-weight: bold;
+      color: #000000;
+      margin: 10px 0px;
+
+      h3 {
+        margin: 0px;
+        margin-top: 20px;
+      }
+      &:hover {
+        color: #8f79db;
+      }
     }
   }
-   .post-header {
+
+  .post-header {
     box-sizing: border-box;
     padding: 20px;
     z-index: 7;
   }
+
   .post-header-desc {
     display: flex;
 

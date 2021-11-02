@@ -1,7 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router';
-import { Post } from '../../Components/post/Post';
-import { data } from '../../data';
+import { Posts } from '../../Components/posts/Posts';
 import './profile.scss';
 
 interface Props {}
@@ -20,13 +19,7 @@ export const Profile = (props: Props) => {
         </div>
         <h3>Дмитрий</h3>
       </div>
-      {data.posts.map((post) => (
-          <>
-            <div className='post-container'>
-              <Post post={post} />
-            </div>
-          </>
-        ))}
+      <Posts />
     </div>
   );
 };

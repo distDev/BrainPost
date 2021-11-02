@@ -1,32 +1,44 @@
-import React from 'react'
-
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import { Loader } from '../../Components/loader/Loader';
 import { Post } from '../../Components/post/Post';
-import { data } from '../../data';
+import { IPost } from '../../interfaces';
 
-interface Props {
- 
-}
+export const SingleCat = () => {
+  const [catContent, setCatContent] = useState<IPost[]>([]);
+  const { name }: any = useParams();
 
-export const SingleCat = (props: Props) => {
-    
-    return (
+  useEffect(() => {
+    const fetchCat = async () => {
+      const res = await axios.get('/posts/');
+      setCatContent(res.data);
+    };
+    fetchCat();
+  }, []);
+
+  console.log(catContent);
+
+  return (
+    <>
       <div className='main-container'>
-        <div className='profile-info'>
-          <div className='profile-info-img'>
-            <img
-              src='https://cdnn21.img.ria.ru/images/149835/48/1498354822_0:66:3000:1754_600x0_80_0_0_311e2d3a799cc2749586cffca988d39e.jpg'
-              alt=''
-            />
-          </div>
-          <h3>Назвагие категории</h3>
-        </div>
-        {data.posts.map((post) => (
+        {catContent.length === 0 ? (
+          <Loader />
+        ) : (
           <>
-            <div className='post-container'>
-              <Post post={post} />
+            <div className='profile-info'>
+              <div className='profile-info-img'>
+                <h3>{name}</h3>
+              </div>
             </div>
+            {catContent
+              .filter((e) => e.categories === name)
+              .map((e) => (
+                <Post post={e} />
+              ))}
           </>
-        ))}
+        )}
       </div>
-    );
-}
+    </>
+  );
+};
