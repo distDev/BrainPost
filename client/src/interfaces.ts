@@ -1,18 +1,19 @@
+import { ReactNode } from "react";
+
 export interface IPost {
-    _id: string;
-    username: string;
-    body: {
-        blocks: ({
-            data: {
-                text: string;
-            };
-        } 
-        )[];
-        version: string;
+  _id: string;
+  username: string;
+  body: {
+    blocks: {
+      data: {
+        text: string;
+      };
     }[];
-    categories: string;
-    createdAt: string;
-    
+    version: string;
+  }[];
+  categories: string;
+  createdAt: string;
+  children: React.ReactNode;
 }
 export interface ICategories {
   _id: string;

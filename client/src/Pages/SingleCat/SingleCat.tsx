@@ -1,8 +1,9 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { Loader } from '../../Components/loader/Loader';
-import { Post } from '../../Components/post/Post';
+
+import { Posts } from '../../Components/posts/Posts';
 import { IPost } from '../../interfaces';
 
 export const SingleCat = () => {
@@ -19,6 +20,8 @@ export const SingleCat = () => {
 
   console.log(catContent);
 
+  const posts = catContent.filter((e) => e.categories === name);
+
   return (
     <>
       <div className='main-container'>
@@ -31,11 +34,7 @@ export const SingleCat = () => {
                 <h3>{name}</h3>
               </div>
             </div>
-            {catContent
-              .filter((e) => e.categories === name)
-              .map((e) => (
-                <Post post={e} />
-              ))}
+            <Posts posts={posts} />
           </>
         )}
       </div>

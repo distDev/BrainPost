@@ -1,24 +1,13 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { IPost } from '../../interfaces';
 
+import { FC} from 'react'
+import { IPost } from '../../interfaces';
 import { Post } from '../post/Post';
 
+interface PostsProps {
+  posts: IPost[];
+}
 
-
-export const Posts = () => {
-  const [posts, setPosts] = useState<IPost[]>([]);
-
-  useEffect(() => {
-    const fetchPost = async () => {
-      const res = await axios.get('/posts');
-      setPosts(res.data);
-    };
-    fetchPost();
-  }, []);
-
- 
-
+export const Posts: FC<PostsProps> = ({ posts }) => {
   return (
     <div className='post-container'>
       {posts.map((post) => (
