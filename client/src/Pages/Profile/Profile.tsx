@@ -1,11 +1,14 @@
+import { useContext } from 'react';
 import { useParams } from 'react-router';
+import { IContx } from '../../Components/forms/authForm/AuthForm';
+import { Context } from '../../Context/Context';
 import './profile.scss';
 
 interface Props {}
 
 export const Profile = (props: Props) => {
   const { author }: any = useParams();
-
+ const { user } = useContext<IContx>(Context);
   return (
     <div className='main-container'>
       <div className='profile-info'>
@@ -15,7 +18,7 @@ export const Profile = (props: Props) => {
             alt=''
           />
         </div>
-        <h3>Дмитрий</h3>
+        <h3>{user?.username}</h3>
       </div>
       {/* <Posts /> */}
     </div>

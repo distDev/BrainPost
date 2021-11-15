@@ -1,3 +1,4 @@
+
 export const navbarList = [
   {
     id: 'gewg5tg5hbdsbrhjafefw',
@@ -14,9 +15,5 @@ export const navbarList = [
     title: 'Категории',
     link: '/categories',
   },
-  {
-    id: 't43trhtj6afadef',
-    title: 'Моя страница',
-    link: '/profile/:id',
-  },
+  
 ];
