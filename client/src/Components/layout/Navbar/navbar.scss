@@ -1,29 +1,57 @@
 .nav-stic {
   position: relative;
-  height: auto;
+  height: 78vh;
+  width: 201px;
+  overflow: hidden;
 }
 
 .navbar {
   width: 201px;
   display: flex;
   flex-direction: column;
-  position: sticky;
-  top: 40px;
- 
+  position: relative;
+  height: 83vh;
+  box-sizing: border-box;
+  position: fixed;
+  top: 102px;
+  justify-content: space-between;
 
-  a {
-    width: 100%;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    color: #000000;
-    text-decoration: none;
-    padding: 13px 15px;
+  .nav-quit {
+    padding: 10px 20px;
     box-sizing: border-box;
-    margin-bottom: 4px;
+    width: 80%;
+    border: none;
+    background: rgb(255, 255, 255);
+    border-radius: 8px;
+    
+    cursor: pointer;
+
+    &:hover {
+      background: rgb(255, 135, 135);
+      color:rgb(255, 255, 255);
+      border: none;
+    }
+    
   }
-  .selected {
+  .navbar-links {
+    display: flex;
+    flex-direction: column;
+    width: 201px;
+
+    a {
+      width: 201px;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      color: #000000;
+      text-decoration: none;
+      padding: 13px 15px;
+      box-sizing: border-box;
+      margin-bottom: 4px;
+    }
+    .selected {
       background: rgb(255, 255, 255);
       border-radius: 8px;
+    }
   }
 }

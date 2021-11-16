@@ -11,7 +11,8 @@ export interface IContx {
   dispatch?: any;
 }
 
-export const AuthForm: FC<IFormType> = ({ setFormType }) => {
+export const AuthForm: FC<IFormType> = ({ setFormType, setOpen }) => {
+  
   const userRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const { dispatch, isFetching } = useContext<IContx>(Context);
@@ -19,22 +20,22 @@ export const AuthForm: FC<IFormType> = ({ setFormType }) => {
   const handleClick = () => {
     setFormType('register');
   };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch({type: 'LOGIN_START'});
+    dispatch({ type: 'LOGIN_START' });
     try {
       const res = await axios.post('/auth/login', {
         username: userRef.current?.value,
-        password: passwordRef.current?.value
-      })
+        password: passwordRef.current?.value,
+      });
       dispatch({ type: 'LOGIN_SUCCESS', payload: res.data });
+      setOpen(false);
     } catch (error) {
-      console.log(error)
+      console.log(error);
       dispatch({ type: 'LOGIN_FAIL' });
     }
   };
-
-  
 
   return (
     <div className='modal-content'>
@@ -47,13 +48,15 @@ export const AuthForm: FC<IFormType> = ({ setFormType }) => {
           ref={userRef}
         />
         <input
-          type='text'
+          type='password'
           className='modal-input'
           placeholder='Введите пароль'
           ref={passwordRef}
         />
         <div className='modal-btns'>
-          <button type='submit' disabled={isFetching}>Войти</button>
+          <button type='submit' disabled={isFetching}>
+            Войти
+          </button>
           <button onClick={handleClick}>Регистрация</button>
         </div>
       </form>

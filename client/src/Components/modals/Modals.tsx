@@ -19,9 +19,10 @@ interface IModal {
   handleOpen: () => void;
   handleClose: () => void;
   open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function BasicModal({ handleOpen, handleClose, open }: IModal) {
+export default function BasicModal({ handleOpen, handleClose, open, setOpen }: IModal) {
   const [formType, setFormType] = useState<'register' | 'auth'>('auth');
 
   return (
@@ -34,9 +35,9 @@ export default function BasicModal({ handleOpen, handleClose, open }: IModal) {
       >
         <Box sx={style}>
           {formType == 'auth' ? (
-            <AuthForm setFormType={setFormType} />
+            <AuthForm setFormType={setFormType} setOpen={setOpen} />
           ) : (
-            <RegisterForm setFormType={setFormType} />
+            <RegisterForm setFormType={setFormType} setOpen={setOpen} />
           )}
         </Box>
       </Modal>

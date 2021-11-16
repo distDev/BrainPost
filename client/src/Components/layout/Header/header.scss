@@ -8,6 +8,8 @@
   padding: 0px 70px;
   justify-content: space-between !important;
   box-sizing: border-box;
+  position: fixed;
+  z-index: 100;
 
   a {
     color: #000;
@@ -17,12 +19,24 @@
   }
   button {
     padding: 12px 40px;
-    background: #8f79db;
+    background: #8a72fd;
     border-radius: 6px;
     font-weight: 600;
     font-size: 14px;
     color: #ffffff;
     border: none;
     display: inline-block;
+  }
+  .header-avatar {
+    display: flex;
+    overflow: hidden;
+    height: 100%;
+    align-items: center;
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      margin-left: 10px;
+    }
   }
 }

@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Route, Switch, Redirect } from 'react-router';
+import { Context } from '../Context/Context';
 import { PrivateRoutes, PublicRoutes } from '../routes';
 import { MAIN_ROUTE } from '../utils/routerConst';
+import { IContx } from './forms/authForm/AuthForm';
 
 
 
 export const AppRouter = () => {
-  const user = true;
+ 
+  const { user } = useContext<IContx>(Context);
 
   return (
     <Switch>

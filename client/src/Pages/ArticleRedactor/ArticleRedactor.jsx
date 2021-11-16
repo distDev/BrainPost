@@ -1,50 +1,89 @@
-import React, { useState } from 'react';
-import EditorJS from '@editorjs/editorjs';
-import Header from '@editorjs/header';
-import SimpleImage from '@editorjs/simple-image';
-import Quote from '@editorjs/quote';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { createReactEditorJS } from 'react-editor-js';
 import './article-editor.scss';
+import { Context } from '../../Context/Context';
+import axios from 'axios';
+import { EDITOR_JS_TOOLS } from './tools';
+import  illus  from '../../images/illus.png'
+import { useHistory } from 'react-router';
+
+
+
 
 export const ArticleRedactor = () => {
-  const [post, setPost] = useState();
+  const [cat, setCat] = useState([]);
+  const [selected, setSelected] = useState('');
+  const [complite, setComplite] = useState(false);
 
-  const editor = new EditorJS({
-    /**
-     * Id of Element that should contain the Editor
-     */
-    holder: 'editorjs',
+  const { user } = useContext(Context);
+  const history = useHistory();
 
-    /**
-     * Available Tools list.
-     * Pass Tool's class or Settings object for each Tool you want to use
-     */
-    tools: {
-      header: Header,
-      image: SimpleImage,
-      quote: Quote,
-    },
+  const editorJS = React.useRef(null);
 
-    placeholder: 'Напишите что-нибудь',
-  });
+  const handleInitialize = React.useCallback((instance) => {
+    editorJS.current = instance;
+  }, []);
 
-  const handleSave = () => {
-    editor
-      .save()
-      .then((outputData) => {
-        console.log( outputData);
-        
-      })
-      
-      .catch((error) => {
-        console.log('Saving failed: ', error);
+  const handleSave = React.useCallback(async () => {
+    const savedData = await editorJS.current.save();
+    try {
+      const res = await axios.post('/posts', {
+        username: user.username,
+        body: savedData,
+        categories: selected,
       });
+      setComplite(true)
+    } catch (error) {}
+  }, [selected, user.username]);
+
+  const ReactEditorJS = createReactEditorJS();
+
+  useEffect(() => {
+    const fetchCat = async () => {
+      const res = await axios.get('/categories/');
+      setCat(res.data);
+    };
+    fetchCat();
+  }, []);
+
+  const handleChangeSelect = (e) => {
+    setSelected(e.target.value);
+  };
+
+  const handleBack = () => {
+    history.push('/');
   }
-  console.log(post)
 
   return (
     <div className='main-container editor-container'>
-      <div id='editorjs'></div>
-      <button onClick={handleSave}>Сохранить</button>
+      {complite ? (
+        <div className='ed-complite'>
+          <img src={illus} alt={illus} />
+          <h2>Поздравляем! ваша статья была опубликована</h2>
+          <button onClick={handleBack}>На главную</button>
+        </div>
+      ) : (
+        <>
+          <div>
+            <select
+              name='select'
+              id=''
+              value={selected}
+              onChange={handleChangeSelect}
+            >
+              {cat.map((e) => (
+                <option value={e.name}>{e.name}</option>
+              ))}
+            </select>
+          </div>
+          <ReactEditorJS
+            onInitialize={handleInitialize}
+            defaultValue={editorJS}
+            tools={EDITOR_JS_TOOLS}
+          />
+          <button onClick={handleSave}>Сохранить</button>
+        </>
+      )}
     </div>
   );
 };

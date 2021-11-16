@@ -2,12 +2,12 @@
   width: 100%;
   background: rgb(255, 255, 255);
   border-radius: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 35px;
   padding-bottom: 20px;
   position: relative;
   background-size: contain;
   overflow: hidden;
-  
+
   .post-content-mini {
     .post-title {
       text-decoration: none;
@@ -21,7 +21,7 @@
         margin-top: 20px;
       }
       &:hover {
-        color: #8f79db;
+        color: #8a72fd;
       }
     }
   }
@@ -50,7 +50,7 @@
       font-weight: normal;
     }
     .cat {
-      color: #8f79db;
+      color: #8a72fd;
       font-weight: 500;
     }
   }
