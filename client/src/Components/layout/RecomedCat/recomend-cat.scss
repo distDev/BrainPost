@@ -22,6 +22,35 @@
   height: 244px;
   background: rgb(255, 255, 255);
   border-radius: 10px;
+  padding: 0px;
+  box-sizing: border-box;
+  h4 {
+    padding-left: 20px;
+    padding-top: 20px;
+    margin: 0px;
+  
+  }
+  .recomed-links {
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+    padding-top: 10px;
+
+    a {
+      text-decoration: none;
+      color: rgba(0, 0, 0, 0.527);
+      font-size: 16px;
+      font-weight: 500;
+      margin: 0px;
+      padding: 10px 20px;
+      display: block;
+      box-sizing: border-box;
+      
+      &:hover {
+        background: rgb(241, 241, 241);
+      }
+    }
+  }
 }
 .recomend-cat-stic {
   position: relative;

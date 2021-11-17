@@ -1,7 +1,7 @@
-export const LoginStart = (userCredentials) => ({
+export const LoginStart = (userCredentials: boolean) => ({
     type: "LOGIN_START"
 })
-export const LoginSuccess = (user) => ({
+export const LoginSuccess = (user: {}) => ({
     type: "LOGIN_SUCCESS",
     payload: user,
 })

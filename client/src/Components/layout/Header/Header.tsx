@@ -31,7 +31,10 @@ export const Header = () => {
           <div className='header-avatar'>
             <h4>{user.username}</h4>
             <img
-              src={user.profilePic}
+              src={
+                user.profilePic ||
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/2560px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg'
+              }
               alt='изображение'
             />
           </div>

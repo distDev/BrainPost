@@ -3,7 +3,7 @@ import { createReactEditorJS } from 'react-editor-js';
 import './article-editor.scss';
 import { Context } from '../../Context/Context';
 import axios from 'axios';
-import { EDITOR_JS_TOOLS } from './tools';
+import { EDITOR_JS_TOOLS } from './tools.js';
 import  illus  from '../../images/illus.png'
 import { useHistory } from 'react-router';
 

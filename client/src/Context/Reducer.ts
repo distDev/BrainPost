@@ -1,5 +1,15 @@
 
-export const Reducer = (state, action) => {
+export interface IState {
+  user: any;
+  isFetching: boolean;
+  error: boolean;
+}
+interface IAction {
+  type: string;
+  payload: null | {};
+}
+
+export const Reducer = (state: IState, action: IAction) => {
   switch (action.type) {
     case 'LOGIN_START':
       return {

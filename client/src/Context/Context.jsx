@@ -1,9 +1,9 @@
 
-import { useReducer, createContext, useEffect } from 'react';
-import { Reducer } from './Reducer';
+import { useReducer, createContext, useEffect} from 'react';
+import {  Reducer } from './Reducer';
 
-export const INITIAL_STATE= {
-  user: JSON.parse(localStorage.getItem('user')) || null,
+export const INITIAL_STATE = {
+  user: JSON.parse(localStorage.getItem('user')),
   isFetching: false,
   error: false,
 };

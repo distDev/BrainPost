@@ -1,6 +1,7 @@
-import React, { FC } from 'react';
+import axios from 'axios';
+import React, { FC, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { IPost } from '../../interfaces';
+import { IPost, IUser } from '../../interfaces';
 
 interface IFullPostContent {
   fullPost: IPost;
@@ -8,10 +9,10 @@ interface IFullPostContent {
 
 }
 
-const FullPostContent: FC<IFullPostContent> = ({ fullPost, id }) => {
+const FullPostContent: FC<IFullPostContent> = ({ fullPost}) => {
   
   const bodyPost = fullPost.body.map((e) => e.blocks)[0];
-  
+   
 
   return (
     <>

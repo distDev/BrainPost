@@ -31,8 +31,12 @@ export const SingleCat = () => {
           <>
             <div className='profile-info'>
               <div className='profile-info-img'>
-                <h3>{name}</h3>
+                <img
+                  src='https://media.lpgenerator.ru/uploads/2017/10/17/1.png'
+                  alt=''
+                />
               </div>
+              <h3>{name}</h3>
             </div>
             <Posts posts={posts} />
           </>

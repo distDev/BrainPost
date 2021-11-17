@@ -1,4 +1,4 @@
-import { ReactChild, ReactChildren } from "react";
+
 
 export interface IPost {
   _id: string;
@@ -23,9 +23,7 @@ export interface ICategories {
   __v: number;
 }
 
-export interface IChild {
-  children: ReactChild | ReactChildren;
-}
+
 
 export interface IFormType {
   setFormType: React.Dispatch<React.SetStateAction<'register' | 'auth'>>;

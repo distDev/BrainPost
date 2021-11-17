@@ -28,18 +28,24 @@ export const Categories:FC = () => {
         className='categories-search'
       />
       <div className='categories-container'>
-       {cat === undefined ? 'Загружается' : (
-         cat.map((e) => (
+        {cat === undefined
+          ? 'Загружается'
+          : cat.map((e) => (
               <Link
                 to={`/single-cat/${e.name}`}
                 className='categories-item'
                 key={e._id}
               >
-                <div className='categories-img'></div>
+                <div className='categories-img'>
+                  <img
+                    src='https://media.lpgenerator.ru/uploads/2017/10/17/1.png'
+                    alt=''
+                  />
+                </div>
 
                 <h3>{e.name}</h3>
               </Link>
-       )))}
+            ))}
       </div>
     </div>
   );
