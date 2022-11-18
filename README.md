@@ -1,5 +1,5 @@
 # BrainPost
-Приложение похожее на reddit/vc.ru/main
+Веб-приложение похоже на Reddit/DTF
 
 Стек: 
 
